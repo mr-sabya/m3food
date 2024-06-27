@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{{ asset('assets/fontend/css/select2-bootstrap-5-theme.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/fontend/scss/main.min.css') }}">
     <link href="{{ asset('assets/fontend/css/loading.css') }}" rel="stylesheet">
-
+    @livewireStyles
 
 </head>
 
@@ -118,10 +118,11 @@
             </div>
         </div>
     </section>
-    
+
     @include('partials.header')
 
-    {{ $slot }}
+    @yield('content')
+        
     <footer id="footer">
         <div class="container">
             <div class="content">
@@ -242,7 +243,7 @@
     <script src="{{ asset('assets/fontend/vendor/toastr/toastr.min.js') }}"></script>
     <script src="{{ asset('assets/fontend/vendor/owl_carousel/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('assets/fontend/js/admin.js') }}"></script>
-
+    @livewireScripts
     <script>
         $(document).ready(function() {
             $(".category-carousel").owlCarousel({
