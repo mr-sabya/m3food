@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Frontend\Home;
 
 use Livewire\Component;
 
@@ -8,6 +8,6 @@ class Banner extends Component
 {
     public function render()
     {
-        return view('livewire.banner');
+        return view('livewire.frontend.home.banner');
     }
 }

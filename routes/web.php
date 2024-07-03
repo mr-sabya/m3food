@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', Home::class)->name('home');
-Route::get('/login', Login::class)->name('login');
-Route::get('/counter', Counter::class);
+Route::get('/', [App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('home');
+Route::get('/login', [App\Http\Controllers\Frontend\Auth\LoginController::class, 'showLoginForm'])->name('login');
+Route::get('/shop', [App\Http\Controllers\Frontend\ShopController::class, 'index'])->name('shop');
 
 
 Route::get('/comment', [App\Http\Controllers\Frontend\CommentController::class, 'index'])->name('comment.index');

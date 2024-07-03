@@ -1,7 +1,7 @@
 <header id="nav">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-dark">
-            <a class="navbar-brand" href="{{ route('home') }}">
+            <a class="navbar-brand" href="{{ route('home') }}" wire:navigate>
                 <img class="main-logo" src="{{ url('assets/fontend/img/logo.svg') }}" alt="" loading="lazy">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,7 +27,7 @@
 
                             <div class="name">
                                 <!-- User is not logged in -->
-                                <div class="tagline"><a href="{{ route('login')}}">Login</a></div>
+                                <div class="tagline"><a href="{{ route('login')}}" wire:navigate>Login</a></div>
 
 
                             </div>

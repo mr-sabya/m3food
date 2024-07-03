@@ -1,0 +1,1 @@
+<a href="javascript:void(0)" class="media fs-14 p-2" wire:click="logout"> <span><i class="flaticon-shut-down mr-2"></i> Logout</span></a>

@@ -1,5 +1,5 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-<livewire:frontend.home />
+<livewire:frontend.shop />
 @endsection

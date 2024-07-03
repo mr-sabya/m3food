@@ -13,4 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\Backend\HomeController::class, 'index'])->name('admin.dashboard');
+Route::name('admin.')->group(function () {
+    Route::get('/login', [App\Http\Controllers\Backend\Auth\LoginController::class, 'showLoginForm'])->name('login');
+
+    Route::group(['middleware' => 'adminauth'], function () {
+        Route::get('/', [App\Http\Controllers\Backend\HomeController::class, 'index'])->name('dashboard');
+    });
+});
