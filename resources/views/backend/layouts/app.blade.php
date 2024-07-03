@@ -66,7 +66,9 @@
     <!-- Main Content -->
     <main class="body-content">
         <!-- Navigation Bar -->
+         @auth
         <x-backend.page.navbar />
+        @endauth
 
         @yield('content')
 

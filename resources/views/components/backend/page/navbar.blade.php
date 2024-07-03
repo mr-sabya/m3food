@@ -15,7 +15,7 @@
                 </div>
             </form>
         </li>
-        
+
 
         <li class="ms-nav-item dropdown"> <a href="#" class="text-disabled ms-has-notification" id="notificationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-bell"></i></a>
             <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdown">
@@ -51,6 +51,7 @@
             </ul>
         </li>
 
+       
         <li class="ms-nav-item ms-nav-user dropdown">
             <a href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img class="ms-user-img ms-img-round float-right" src="{{ url('assets/backend/img/foodtech/customer-6.jpg') }}" alt="people">
@@ -75,10 +76,11 @@
                     </a>
                 </li>
                 <li class="dropdown-menu-footer">
-                    <livewire:backend.auth.logout/>
+                    <livewire:backend.auth.logout />
                 </li>
             </ul>
         </li>
+        
     </ul>
     <div class="ms-toggler ms-d-block-sm pr-0 ms-nav-toggler" data-toggle="slideDown" data-target="#ms-nav-options">
         <span class="ms-toggler-bar bg-primary"></span>

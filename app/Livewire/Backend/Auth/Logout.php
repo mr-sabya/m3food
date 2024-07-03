@@ -9,7 +9,7 @@ class Logout extends Component
 {
     public function logout()
     {
-        Auth::guard('admin')->logout();
+        Auth::logout();
         return redirect(route('admin.login'));
     }
     
