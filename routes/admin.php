@@ -18,5 +18,8 @@ Route::name('admin.')->group(function () {
 
     Route::group(['middleware' => 'adminauth'], function () {
         Route::get('/', [App\Http\Controllers\Backend\HomeController::class, 'index'])->name('dashboard');
+
+        Route::get('categories', [App\Http\Controllers\Backend\CategoryController::class, 'index'])->name('category.index');
+        Route::get('category/create', [App\Http\Controllers\Backend\CategoryController::class, 'create'])->name('category.create');
     });
 });

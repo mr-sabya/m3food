@@ -11,4 +11,11 @@ class CategoryController extends Controller
     {
         return view('backend.category.index');    
     }
+
+
+    // show create form
+    public function create()
+    {
+        return view('backend.category.create');
+    }
 }

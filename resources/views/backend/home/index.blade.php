@@ -999,3 +999,15 @@
     </div>
 </div>
 @endsection
+
+
+@section('page-js')
+<script src="{{ asset('assets/backend/js/Chart.bundle.min.js') }}"></script>
+<script src="{{ asset('assets/backend/js/widgets.js') }}"></script>
+<script src="{{ asset('assets/backend/js/clients.js') }}"></script>
+<script src="{{ asset('assets/backend/js/Chart.Financial.js') }}"></script>
+<script src="{{ asset('assets/backend/js/d3.v3.min.js') }}"></script>
+<script src="{{ asset('assets/backend/js/topojson.v1.min.js') }}"></script>
+<script src="{{ asset('assets/backend/js/datatables.min.js') }}"></script>
+<script src="{{ asset('assets/backend/js/data-tables.js') }}"></script>
+@endsection

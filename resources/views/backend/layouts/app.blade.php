@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Foodtech Dashboard</title>
-    <meta name="csrf_token" value="{{ csrf_token() }}"/>
+    <meta name="csrf_token" value="{{ csrf_token() }}" />
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
 
 
@@ -25,11 +25,14 @@
     <link rel="stylesheet" href="{{ asset('assets/backend/css/datatables.min.css') }}">
     <!-- Foodtech styles -->
     <link rel="stylesheet" href="{{ asset('assets/backend/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/backend/css/custom.css') }}">
     <!-- Favicon -->
 </head>
 
 <body class="ms-body {{ Route::is('admin.login') ? 'ms-logged-out' : 'ms-aside-left-open'}} ms-primary-theme ">
     <!-- Preloader -->
+
+    @if(Route::is('admin.login'))
     <div id="preloader-wrap">
         <div class="spinner spinner-8">
             <div class="ms-circle1 ms-child"></div>
@@ -46,30 +49,31 @@
             <div class="ms-circle12 ms-child"></div>
         </div>
     </div>
+    @endif
     <!-- Overlays -->
     <div class="ms-aside-overlay ms-overlay-left ms-toggler" data-target="#ms-side-nav" data-toggle="slideLeft"></div>
-    
+
     <!-- Sidebar Navigation Left -->
     <aside id="ms-side-nav" class="side-nav fixed ms-aside-scrollable ms-aside-left">
         <!-- Logo -->
-        <x-backend.page.logo parentclass="logo-sn ms-d-block-lg" childclass="pl-0 ml-0 text-center"/>
-        
+        <x-backend.page.logo parentclass="logo-sn ms-d-block-lg" childclass="pl-0 ml-0 text-center" />
+
         <!-- Navigation -->
-        <x-backend.page.side-menu/>
-        
+        <x-backend.page.side-menu />
+
     </aside>
-    
+
     <!-- Main Content -->
     <main class="body-content">
         <!-- Navigation Bar -->
-        <x-backend.page.navbar/>
+        <x-backend.page.navbar />
 
         @yield('content')
 
     </main>
     <!-- MODALS -->
-    
-   
+
+
 
     <!-- SCRIPTS -->
     <!-- Global Required Scripts Start -->
@@ -80,21 +84,17 @@
     <script src="{{ asset('assets/backend/js/jquery-ui.min.js') }}"></script>
     <!-- Global Required Scripts End -->
 
+
     <!-- Page Specific Scripts Start -->
-    <script src="{{ asset('assets/backend/js/Chart.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/backend/js/widgets.js') }}"></script>
-    <script src="{{ asset('assets/backend/js/clients.js') }}"></script>
-    <script src="{{ asset('assets/backend/js/Chart.Financial.js') }}"></script>
-    <script src="{{ asset('assets/backend/js/d3.v3.min.js') }}"></script>
-    <script src="{{ asset('assets/backend/js/topojson.v1.min.js') }}"></script>
-    <script src="{{ asset('assets/backend/js/datatables.min.js') }}"></script>
-    <script src="{{ asset('assets/backend/js/data-tables.js') }}"></script>
+    @yield('page-js')
     <!-- Page Specific Scripts Finish -->
 
     <!-- Foodtech core JavaScript -->
     <script src="{{ asset('assets/backend/js/framework.js') }}"></script>
     <!-- Settings -->
     <script src="{{ asset('assets/backend/js/settings.js') }}"></script>
+
+    @yield('scripts')
 </body>
 
 </html>
