@@ -18,4 +18,10 @@ class CategoryController extends Controller
     {
         return view('backend.category.create');
     }
+
+    // show create form
+    public function edit($id)
+    {
+        return view('backend.category.edit', compact('id'));
+    }
 }

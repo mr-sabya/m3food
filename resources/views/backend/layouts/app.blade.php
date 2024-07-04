@@ -23,6 +23,9 @@
     <!-- Page Specific CSS (Slick Slider.css) -->
     <link rel="stylesheet" href="{{ asset('assets/backend/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/backend/css/datatables.min.css') }}">
+
+    <!-- Page Specific CSS (Toastr.css) -->
+    <link href="{{ asset('assets/backend/css/toastr.min.css') }}" rel="stylesheet">
     <!-- Foodtech styles -->
     <link rel="stylesheet" href="{{ asset('assets/backend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/backend/css/custom.css') }}">
@@ -66,7 +69,7 @@
     <!-- Main Content -->
     <main class="body-content">
         <!-- Navigation Bar -->
-         @auth
+        @auth
         <x-backend.page.navbar />
         @endauth
 
@@ -86,6 +89,11 @@
     <script src="{{ asset('assets/backend/js/jquery-ui.min.js') }}"></script>
     <!-- Global Required Scripts End -->
 
+    <!-- Page Specific Scripts Start -->
+    <script src="{{ asset('assets/backend/js/toastr.min.js') }}"></script>
+    <script src="{{ asset('assets/backend/assets/js/toast.js') }}">
+    </script>
+
 
     <!-- Page Specific Scripts Start -->
     @yield('page-js')
@@ -97,6 +105,13 @@
     <script src="{{ asset('assets/backend/js/settings.js') }}"></script>
 
     @yield('scripts')
+    @if(Session::has('success'))
+    <script>
+        toastr.remove();
+        toastr.options.positionClass = "toast-top-right";
+        toastr.success("{{ Session::get('success')}}", "Success");
+    </script>
+    @endif
 </body>
 
 </html>
