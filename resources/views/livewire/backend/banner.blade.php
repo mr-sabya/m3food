@@ -21,6 +21,7 @@
                         @if($banner)
                         <input type="hidden" wire:model="bannerId">
                         @endif
+
                         <div class="form-row">
                             <div class="col-md-12 mb-3">
                                 <label for="validationCustom18">Name</label>
@@ -33,7 +34,6 @@
                             <div class="col-md-12 mb-3">
                                 <label>Image</label>
                                 <label class="upload-image" for="image">
-
                                     @if($uploadImage)
                                     @if($image)
                                     <img src="{{ $image->temporaryUrl() }}" />
