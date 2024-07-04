@@ -10,14 +10,26 @@ use Livewire\WithFileUploads;
 class Edit extends Component
 {
     use WithFileUploads;
-    public $category;
-    public $category_id, $name, $slug, $image;
+    public $category, $category_id, $name, $slug, $image, $uploadImage = false;
 
 
     public function generateSlug()
     {
         $this->slug = Str::slug($this->name);
     }
+
+
+
+    /**
+     * Active image upload and preview
+     * @return void
+     */
+    public function activeImageUpload()
+    {
+        $this->uploadImage = true;
+    }
+
+
 
     public function mount($id)
     {
@@ -28,7 +40,10 @@ class Edit extends Component
         $this->slug = $category->slug;
     }
 
-
+    /**
+     * update the post data
+     * @return void
+     */
     public function updateCategory()
     {
         $category = Category::find($this->category_id);

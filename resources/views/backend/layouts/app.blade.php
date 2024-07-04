@@ -112,6 +112,14 @@
         toastr.success("{{ Session::get('success')}}", "Success");
     </script>
     @endif
+
+    @if(Session::has('error'))
+    <script>
+        toastr.remove();
+        toastr.options.positionClass = "toast-top-right";
+        toastr.error("{{ Session::get('error')}}", "Error");
+    </script>
+    @endif
 </body>
 
 </html>

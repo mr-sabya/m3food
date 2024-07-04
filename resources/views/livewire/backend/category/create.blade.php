@@ -1,7 +1,7 @@
 <div class="ms-content-wrapper">
     <div class="row">
 
-        <x-backend.page.breadcrumb title="Add Category" />
+        <x-backend.page.breadcrumb title="Add Category" otherlink="{{ route('admin.category.index') }}" linkname="Category" />
 
 
         <div class="col-xl-6 col-md-12">

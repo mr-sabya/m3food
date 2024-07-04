@@ -22,5 +22,8 @@ Route::name('admin.')->group(function () {
         Route::get('categories', [App\Http\Controllers\Backend\CategoryController::class, 'index'])->name('category.index');
         Route::get('category/create', [App\Http\Controllers\Backend\CategoryController::class, 'create'])->name('category.create');
         Route::get('category/edit/{id}', [App\Http\Controllers\Backend\CategoryController::class, 'edit'])->name('category.edit');
+
+        // banners
+        Route::get('banners', [App\Http\Controllers\Backend\BannerController::class, 'index'])->name('banner.index');
     });
 });

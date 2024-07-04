@@ -5,6 +5,11 @@
         </a>
     </li>
     <!-- /Dashboard -->
+
+    <li class="menu-item">
+        <a href="{{ route('admin.banner.index')}}" class="{{ Route::is('admin.banner.index') ? 'active' : '' }}" wire:navigate> <span><i class="fas fa-clipboard-list fs-16"></i>Banners</span>
+        </a>
+    </li>
     <!-- product -->
     <li class="menu-item">
         <a href="#" class="has-chevron {{ Route::is('admin.category.*') ? 'active' : '' }}" data-toggle="collapse" data-target="#product" aria-expanded="false" aria-controls="product"> <span><i class="fa fa-archive fs-16"></i>Products </span>

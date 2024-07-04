@@ -1,7 +1,7 @@
 <div class="ms-content-wrapper">
     <div class="row">
 
-        <x-backend.page.breadcrumb title="Add Category" />
+        <x-backend.page.breadcrumb title="Edit Category" otherlink="{{ route('admin.category.index') }}" linkname="Category" />
 
 
         <div class="col-xl-6 col-md-12">
@@ -24,7 +24,7 @@
                             </div>
 
                             <div class="col-md-12 mb-3">
-                                <label for="validationCustom18">Slug</label>
+                                <label for="slug">Slug</label>
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Slug" wire:model="slug">
                                     @error('slug') <div class="invalid-feedback d-block">{{ $message }}</div> @enderror
@@ -37,18 +37,20 @@
                             </div>
 
                             <div class="col-md-12 mb-3">
-                                <label for="validationCustom12">Image</label>
-                                <label class="upload-image">
-                                    @if($category->image)
-                                    <img src="{{ getFileUrl($category->image) }}" />
-                                    @elseif($image)
+                                <label>Image</label>
+                                <label class="upload-image" for="image">
+                                @if($uploadImage)
+                                    @if($image)
                                     <img src="{{ $image->temporaryUrl() }}" />
+                                    @endif
+                                    @elseif(!$uploadImage)
+                                    <img src="{{ getFileUrl($category->image) }}" />
                                     @else
                                     <h3>Image Preview</h3>
                                     @endif
                                 </label>
                                 <div class="custom-file">
-                                    <input type="file" class="form-control image-input" id="image" wire:model="image">
+                                    <input type="file" class="form-control image-input" id="image" wire:model="image" wire:change="activeImageUpload">
                                     @error('image') <div class="invalid-feedback d-block">{{ $message }}</div> @enderror
                                 </div>
                             </div>
