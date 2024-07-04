@@ -25,6 +25,19 @@ class Banner extends Component
         $this->image = '';
     }
 
+
+    /**
+     * Open Add Post form
+     * @return void
+     */
+    public function addPost()
+    {
+        $this->resetFields();
+        $this->addBanner= true;
+        $this->updateBaner = false;
+        $this->uploadImage = true;
+    }
+
     /**
      * Active image upload and preview
      * @return void
@@ -35,7 +48,7 @@ class Banner extends Component
     }
 
 
-    
+
     /**
      * store the user inputted post data in the posts table
      * @return void
@@ -129,8 +142,6 @@ class Banner extends Component
             $this->updateBaner = false;
             $this->addBanner = true;
             $this->uploadImage = true;
-
-        
         } catch (\Exception $ex) {
             session()->flash('success', 'Something goes wrong!!');
         }
@@ -144,13 +155,13 @@ class Banner extends Component
      */
     public function delete($id)
     {
-        try{
+        try {
             $banner = ModelsBanner::find($id);
             Storage::disk('public')->delete($banner->image);
             $banner->delete();
-            session()->flash('success',"Banner has been Deleted Successfully!!");
-        }catch(\Exception $e){
-            session()->flash('error',"Something goes wrong!!");
+            session()->flash('success', "Banner has been Deleted Successfully!!");
+        } catch (\Exception $e) {
+            session()->flash('error', "Something goes wrong!!");
         }
     }
 

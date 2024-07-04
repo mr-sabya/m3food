@@ -39,12 +39,14 @@
                             <div class="col-md-12 mb-3">
                                 <label>Image</label>
                                 <label class="upload-image" for="image">
-                                @if($uploadImage)
+                                    @if($uploadImage)
                                     @if($image)
                                     <img src="{{ $image->temporaryUrl() }}" />
+                                    @else
+                                    <h3>Image Preview</h3>
                                     @endif
                                     @elseif(!$uploadImage)
-                                    <img src="{{ getFileUrl($category->image) }}" />
+                                    <img src="{{ getFileUrl($banner->image) }}" />
                                     @else
                                     <h3>Image Preview</h3>
                                     @endif

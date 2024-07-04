@@ -8,7 +8,7 @@
             <div class="ms-card">
                 <div class="ms-card-body ms-panel-header new m-0">
                     <h4 class="m-0">All {{ $page }}s</h4>
-                    
+
                 </div>
             </div>
 
@@ -30,8 +30,6 @@
                                 </div>
                             </div>
 
-
-
                             <div class="col-md-12 mb-3">
                                 <label>Image</label>
                                 <label class="upload-image" for="image">
@@ -39,6 +37,8 @@
                                     @if($uploadImage)
                                     @if($image)
                                     <img src="{{ $image->temporaryUrl() }}" />
+                                    @else
+                                    <h3>Image Preview</h3>
                                     @endif
                                     @elseif(!$uploadImage)
                                     <img src="{{ getFileUrl($banner->image) }}" />
@@ -55,7 +55,10 @@
                         @if($addBanner)
                         <button wire:click.prevent="storeBanner()" class="btn btn-secondary d-block" type="submit">Save</button>
                         @else
-                        <button wire:click.prevent="updateBanner()" class="btn btn-secondary d-block" type="submit">Update</button>
+                        <div class="d-flex">
+                            <button wire:click.prevent="updateBanner()" class="btn btn-secondary d-block" type="submit">Update</button>
+                            <button wire:click.prevent="addPost()" class="btn btn-secondary d-block ml-2" type="button">Cancel</button>
+                        </div>
                         @endif
 
                     </form>
