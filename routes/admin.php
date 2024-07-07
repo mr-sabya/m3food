@@ -25,5 +25,8 @@ Route::name('admin.')->group(function () {
 
         // banners
         Route::get('banners', [App\Http\Controllers\Backend\BannerController::class, 'index'])->name('banner.index');
+
+        // tags
+        Route::get('tags', [App\Http\Controllers\Backend\TagController::class, 'index'])->name('tag.index');
     });
 });

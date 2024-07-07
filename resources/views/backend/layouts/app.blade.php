@@ -91,8 +91,6 @@
 
     <!-- Page Specific Scripts Start -->
     <script src="{{ asset('assets/backend/js/toastr.min.js') }}"></script>
-    <script src="{{ asset('assets/backend/assets/js/toast.js') }}">
-    </script>
 
 
     <!-- Page Specific Scripts Start -->
@@ -105,21 +103,27 @@
     <script src="{{ asset('assets/backend/js/settings.js') }}"></script>
 
     @yield('scripts')
-    @if(Session::has('success'))
-    <script>
-        toastr.remove();
-        toastr.options.positionClass = "toast-top-right";
-        toastr.success("{{ Session::get('success')}}", "Success");
-    </script>
-    @endif
 
-    @if(Session::has('error'))
     <script>
-        toastr.remove();
-        toastr.options.positionClass = "toast-top-right";
-        toastr.error("{{ Session::get('error')}}", "Error");
+        window.setTimeout(function() {
+            $(".alert").fadeTo(1000, 0).slideUp(1000, function() {
+                $(this).remove();
+            });
+        }, 5000);
     </script>
-    @endif
+
+    <script>
+        document.addEventListener('livewire:init', () => {
+            Livewire.on('alert', (event) => {
+                toastr[event[0].type](event[0].message,
+                    event[0].title ?? ''), toastr.options = {
+                    "closeButton": true,
+                    "progressBar": true,
+                }
+            });
+        });
+    </script>
+
 </body>
 
 </html>
