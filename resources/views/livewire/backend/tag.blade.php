@@ -2,7 +2,7 @@
 
     <div class="row">
 
-        <x-backend.page.breadcrumb title="Tag" />
+        <x-backend.page.breadcrumb title="{{ $page }}" />
 
         <div class="col-lg-12">
             <div class="ms-card">

@@ -105,14 +105,6 @@
     @yield('scripts')
 
     <script>
-        window.setTimeout(function() {
-            $(".alert").fadeTo(1000, 0).slideUp(1000, function() {
-                $(this).remove();
-            });
-        }, 5000);
-    </script>
-
-    <script>
         document.addEventListener('livewire:init', () => {
             Livewire.on('alert', (event) => {
                 toastr[event[0].type](event[0].message,

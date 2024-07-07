@@ -28,5 +28,9 @@ Route::name('admin.')->group(function () {
 
         // tags
         Route::get('tags', [App\Http\Controllers\Backend\TagController::class, 'index'])->name('tag.index');
+
+        // products
+        Route::get('products', [App\Http\Controllers\Backend\ProductController::class, 'index'])->name('product.index');
+        Route::get('product/create', [App\Http\Controllers\Backend\ProductController::class, 'create'])->name('product.create');
     });
 });
