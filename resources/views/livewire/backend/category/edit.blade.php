@@ -46,7 +46,7 @@
                                     <h3>Image Preview</h3>
                                     @endif
                                     @elseif(!$uploadImage)
-                                    <img src="{{ getFileUrl($banner->image) }}" />
+                                    <img src="{{ getFileUrl($category->image) }}" />
                                     @else
                                     <h3>Image Preview</h3>
                                     @endif

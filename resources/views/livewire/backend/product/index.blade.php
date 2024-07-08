@@ -15,31 +15,39 @@
         </div>
         <div class="col-md-12">
             <div class="row">
-
+                @forelse($products as $product)
                 <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                     <div class="ms-card">
                         <div class="ms-card-img">
-                            <img src="{{ url('assets/backend/img/foodtech/food-1.jpg') }}" alt="card_img">
+                            <img src="{{ getFileUrl($product->image) }}" alt="card_img">
                         </div>
                         <div class="ms-card-body">
 
                             <div class="new">
-                                <h6 class="mb-0">Veggies </h6>
+                                <h6 class="mb-0">{{ $product->name }} </h6>
                                 <h6 class="ms-text-primary mb-0">$45.50</h6>
                             </div>
                             <div class="new meta">
                                 <p>Qty:1467 </p>
                                 <span class="badge badge-success">In Stock</span>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, dolor sit amet, consectetur adipiscing</p>
+                            <p>{!! $product->heading !!}</p>
                             <div class="new mb-0">
                                 <a href="#" class="btn grid-btn mt-0 btn-sm btn-primary">Remove</a>
-                                <a href="#" class="btn grid-btn mt-0 btn-sm btn-secondary">Edit</a>
+                                <a href="{{ route('admin.product.edit', $product->id)}}" wire:navigate class="btn grid-btn mt-0 btn-sm btn-secondary">Edit</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+                @empty
+                <div class="col-lg-12">
+                    <div class="ms-card">
+                        <div class="ms-card-body ">
+                            <h4 class="text-center m-0">No {{ $page}} Found!!</h4>
+                        </div>
+                    </div>
+                </div>
+                @endforelse
             </div>
         </div>
 

@@ -26,6 +26,9 @@
 
     <!-- Page Specific CSS (Toastr.css) -->
     <link href="{{ asset('assets/backend/css/toastr.min.css') }}" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+
     <!-- Foodtech styles -->
     <link rel="stylesheet" href="{{ asset('assets/backend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/backend/css/custom.css') }}">
@@ -91,6 +94,9 @@
 
     <!-- Page Specific Scripts Start -->
     <script src="{{ asset('assets/backend/js/toastr.min.js') }}"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
 
     <!-- Page Specific Scripts Start -->

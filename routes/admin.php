@@ -32,5 +32,6 @@ Route::name('admin.')->group(function () {
         // products
         Route::get('products', [App\Http\Controllers\Backend\ProductController::class, 'index'])->name('product.index');
         Route::get('product/create', [App\Http\Controllers\Backend\ProductController::class, 'create'])->name('product.create');
+        Route::get('product/edit/{id}', [App\Http\Controllers\Backend\ProductController::class, 'edit'])->name('product.edit');
     });
 });
