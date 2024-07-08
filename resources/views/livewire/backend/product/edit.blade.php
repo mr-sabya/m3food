@@ -215,9 +215,11 @@
                                 @foreach($categories as $category)
                                 <div class="form-group mb-2">
                                     <label class="ms-checkbox-wrap ms-checkbox-primary">
-                                       
-                                        <input type="checkbox" value="{{ $category->id }}" id="category_{{ $category->id }}" wire:model="category.{{ $category->id }}"> <i class="ms-checkbox-check"></i>
-                                        
+                                        @if($product->getCategory($category->id))
+                                        <input type="checkbox" value="{{ $category->id }}" id="category_{{ $category->id }}" wire:model="category.{{ $category->id }}" checked> <i class="ms-checkbox-check"></i>
+                                        @else
+                                        <input type="checkbox" value="{{ $category->id }}" id="category_{{ $category->id }}" wire:model="category.{{ $category->id }}" checked> <i class="ms-checkbox-check"></i>
+                                        @endif
                                     </label>
                                     <span> <label for="category_{{ $category->id }}">{{ $category->name }} </label></span>
                                 </div>
