@@ -20,14 +20,15 @@
 
                 </div>
                 <div class="ms-panel-body product">
-                    <div class="d-flex justify-content-center">
+                    <div class="d-flex justify-content-center align-items-center flex-column">
                         <h3 class="text-center">{!! $product->heading !!}</h3>
+
+                        <h5 class="text-center mt-4">{!! $product->tag_line_1 !!} </h5>
+                        <div class="video mt-5">
+                            <iframe src="{{ $product->video }}" frameborder="0" width="1040" height="585"></iframe>
+                        </div>
+                        <h5 class="text-center mt-4">{!! $product->tag_line_2 !!} </h5>
                     </div>
-                    <h5 class="text-center mt-4">{!! $product->tag_line_1 !!} </h5>
-                    <div class="video text-center mt-5">
-                        <iframe src="{{ $product->video }}" frameborder="0" width="1040" height="585"></iframe>
-                    </div>
-                    <h5 class="text-center mt-4">{!! $product->tag_line_2 !!} </h5>
                 </div>
             </div>
 
