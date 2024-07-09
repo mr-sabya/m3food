@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    //
+    //show all products
     public function index()
     {
         return view('backend.product.index');
@@ -20,10 +20,15 @@ class ProductController extends Controller
         return view('backend.product.create');    
     }
 
+    // show edit form by id
     public function edit($id)
     {
-        $product = Product::with('categories')->find($id);
-        // return $product;
         return view('backend.product.edit', compact('id'));    
+    }
+
+    //show product by id
+    public function show($id)
+    {
+        return view('backend.product.show', compact('id'));    
     }
 }

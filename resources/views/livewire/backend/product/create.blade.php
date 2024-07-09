@@ -212,10 +212,10 @@
 
                             <div class="col-md-12 mb-3">
                                 <label for="category">Category</label>
-                                @foreach($categories as $key => $category)
+                                @foreach($categories as $category)
                                 <div class="form-group mb-2">
                                     <label class="ms-checkbox-wrap ms-checkbox-primary">
-                                        <input type="checkbox" name="category[]" value="{{ $category->id }}" id="category_{{ $category->id }}" wire:model="category.{{ $key }}"> <i class="ms-checkbox-check"></i>
+                                        <input type="checkbox" name="category[]" value="{{ $category->id }}" id="category_{{ $category->id }}" wire:model="category.{{ $category->id }}"> <i class="ms-checkbox-check"></i>
                                     </label>
                                     <span> <label for="category_{{ $category->id }}">{{ $category->name }} </label></span>
                                 </div>

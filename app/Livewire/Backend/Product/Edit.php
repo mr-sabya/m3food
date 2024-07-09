@@ -11,7 +11,7 @@ use Livewire\WithFileUploads;
 class Edit extends Component
 {
     use WithFileUploads;
-    public $page = "Product", $product, $product_id, $category = [], $uploadImage = false, $getCategory;
+    public $page = "Product", $product, $product_id, $category = array(), $uploadImage = false, $getCategory;
     public $name, $slug, $image, $heading, $tag_line_1, $tag_line_2, $video, $benifit_title, $benifit_image, $para_1, $para_2, $use_title, $use_text, $warning_title, $warning_text, $facility_title;
 
 
@@ -38,7 +38,11 @@ class Edit extends Component
         $this->product = $product;
         $this->product_id = $product->id;
 
-        // $this->category = $product->categories()->pluck('id')->toArray();
+        //get product categories for checkbox
+        foreach($product->categories as $cat){
+            $this->category[$cat->id] = true;
+        }
+
 
         $this->name = $product->name;
         $this->slug = $product->slug;
@@ -60,10 +64,11 @@ class Edit extends Component
     public function update()
     {
         $categories = [];
-        foreach($this->category as $key=> $data){
-            array_push($categories, $key);
+        foreach($this->category as $key => $data){
+            if($data== true){
+                array_push($categories, $key);
+            }
         }
-
 
         $product = Product::find($this->product_id);
 

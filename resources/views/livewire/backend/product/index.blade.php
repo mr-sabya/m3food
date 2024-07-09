@@ -51,5 +51,9 @@
             </div>
         </div>
 
+        <div class="col-xl-12 col-md-12">
+            {{ $products->links() }}
+        </div>
+
     </div>
 </div>
