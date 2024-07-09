@@ -19,7 +19,9 @@
                 <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                     <div class="ms-card">
                         <div class="ms-card-img">
-                            <img src="{{ getFileUrl($product->image) }}" alt="card_img">
+                            <a href="{{ route('admin.product.show', $product->id)}}" wire:navigate>
+                                <img src="{{ getFileUrl($product->image) }}" alt="card_img">
+                            </a>
                         </div>
                         <div class="ms-card-body">
 

@@ -1,4 +1,4 @@
 @extends('backend.layouts.app')
 @section('content')
-<livewire:backend.product.show id="{{ $id}}"/>
+<livewire:backend.error404/>
 @endsection

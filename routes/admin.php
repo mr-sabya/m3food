@@ -19,6 +19,8 @@ Route::name('admin.')->group(function () {
     Route::group(['middleware' => 'adminauth'], function () {
         Route::get('/', [App\Http\Controllers\Backend\HomeController::class, 'index'])->name('dashboard');
 
+        Route::get('/404', [App\Http\Controllers\Backend\ErrorController::class, 'error404'])->name('error.404');
+
         Route::get('categories', [App\Http\Controllers\Backend\CategoryController::class, 'index'])->name('category.index');
         Route::get('category/create', [App\Http\Controllers\Backend\CategoryController::class, 'create'])->name('category.create');
         Route::get('category/edit/{id}', [App\Http\Controllers\Backend\CategoryController::class, 'edit'])->name('category.edit');
@@ -33,5 +35,6 @@ Route::name('admin.')->group(function () {
         Route::get('products', [App\Http\Controllers\Backend\ProductController::class, 'index'])->name('product.index');
         Route::get('product/create', [App\Http\Controllers\Backend\ProductController::class, 'create'])->name('product.create');
         Route::get('product/edit/{id}', [App\Http\Controllers\Backend\ProductController::class, 'edit'])->name('product.edit');
+        Route::get('product/{id}', [App\Http\Controllers\Backend\ProductController::class, 'show'])->name('product.show');
     });
 });

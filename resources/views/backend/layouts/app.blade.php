@@ -35,7 +35,7 @@
     <!-- Favicon -->
 </head>
 
-<body class="ms-body {{ Route::is('admin.login') ? 'ms-logged-out' : 'ms-aside-left-open'}} ms-primary-theme ">
+<body class="ms-body {{ Route::is('admin.login') || Route::is('admin.error.404') ? 'ms-logged-out' : 'ms-aside-left-open'}} ms-primary-theme ">
     <!-- Preloader -->
 
     @if(Route::is('admin.login'))
@@ -58,7 +58,7 @@
     @endif
     <!-- Overlays -->
     <div class="ms-aside-overlay ms-overlay-left ms-toggler" data-target="#ms-side-nav" data-toggle="slideLeft"></div>
-
+    @if(!Route::is('admin.error.404'))
     <!-- Sidebar Navigation Left -->
     <aside id="ms-side-nav" class="side-nav fixed ms-aside-scrollable ms-aside-left">
         <!-- Logo -->
@@ -66,15 +66,17 @@
 
         <!-- Navigation -->
         <x-backend.page.side-menu />
-
     </aside>
+    @endif
 
     <!-- Main Content -->
-    <main class="body-content">
+    <main class="body-content {{ Route::is('admin.error.404') ? 'ms-error-404' : '' }}">
         <!-- Navigation Bar -->
+        @if(!Route::is('admin.error.404'))
         @auth
         <x-backend.page.navbar />
         @endauth
+        @endif
 
         @yield('content')
 
@@ -119,6 +121,11 @@
                     "progressBar": true,
                 }
             });
+        });
+
+        $('.summernote').summernote({
+            tabsize: 2,
+            height: 300
         });
     </script>
 
