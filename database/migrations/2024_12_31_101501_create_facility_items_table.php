@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Facility;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,10 +12,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_benifits', function (Blueprint $table) {
+        Schema::create('facility_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_id');
-            $table->string('benifit');
+            $table->foreignIdFor(Facility::class);
+            $table->string('text');
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_benifits');
+        Schema::dropIfExists('facility_items');
     }
 };

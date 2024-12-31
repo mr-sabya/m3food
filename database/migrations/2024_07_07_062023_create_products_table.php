@@ -15,20 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
+            $table->string('title');
+            $table->string('thumbnail');
             $table->string('image');
-            $table->string('heading');
-            $table->string('tag_line_1', 500);
-            $table->string('tag_line_2', 500);
-            $table->string('video')->nullable();
-            $table->string('benifit_title')->nullable();
-            $table->string('benifit_image')->nullable();
-            $table->string('para_1')->nullable();
-            $table->string('para_2')->nullable();
-            $table->string('use_title')->nullable();
-            $table->text('use_text')->nullable();
-            $table->string('warning_title')->nullable();
-            $table->text('warning_text')->nullable();
-            $table->string('facility_title')->nullable();
+            $table->string('tagline');
+            $table->text('details');
             $table->timestamps();
         });
     }

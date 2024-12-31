@@ -27,12 +27,14 @@
     <!-- Page Specific CSS (Toastr.css) -->
     <link href="{{ asset('assets/backend/css/toastr.min.css') }}" rel="stylesheet">
 
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
     <!-- Foodtech styles -->
     <link rel="stylesheet" href="{{ asset('assets/backend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/backend/css/custom.css') }}">
     <!-- Favicon -->
+
+    @livewireStyles
 </head>
 
 <body class="ms-body {{ Route::is('admin.login') || Route::is('admin.error.404') ? 'ms-logged-out' : 'ms-aside-left-open'}} ms-primary-theme ">
@@ -98,7 +100,7 @@
     <script src="{{ asset('assets/backend/js/toastr.min.js') }}"></script>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
 
     <!-- Page Specific Scripts Start -->
@@ -111,6 +113,7 @@
     <script src="{{ asset('assets/backend/js/settings.js') }}"></script>
 
     @yield('scripts')
+    @livewireScripts
 
     <script>
         document.addEventListener('livewire:init', () => {
@@ -123,10 +126,7 @@
             });
         });
 
-        $('.summernote').summernote({
-            tabsize: 2,
-            height: 300
-        });
+        
     </script>
 
 </body>

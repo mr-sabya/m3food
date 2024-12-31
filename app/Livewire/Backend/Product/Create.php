@@ -10,13 +10,11 @@ use Livewire\WithFileUploads;
 
 class Create extends Component
 {
-    // 'name', 'slug', 'image', 'heading', 'tag_line_1', 'tag_line_2', 'video', 'benifit_title', 'benifit_image', 'para_1', 'para_2', 'use_title', 'use_text', 'warning_title', 'warning_text', 'facility_title'
-
-
     use WithFileUploads;
-    public $page = "Product", $category = array();
-    public $name, $slug, $image, $heading, $tag_line_1, $tag_line_2, $video, $benifit_title, $benifit_image, $para_1, $para_2, $use_title, $use_text, $warning_title, $warning_text, $facility_title;
 
+    public $page = "Product";
+    public $category = [];
+    public $name, $slug, $title, $image, $thumbnail, $tagline, $details;
 
     public function generateSlug()
     {
@@ -26,84 +24,67 @@ class Create extends Component
     public function store()
     {
         $categories = [];
-        foreach($this->category as $key => $data){
-            if($data== true){
+        foreach($this->category as $key => $data) {
+            if ($data == true) {
                 array_push($categories, $key);
             }
         }
 
-
+        // Validate the fields
         $this->validate([
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:products',
-            'image' => 'required|image|mimes:jpeg,jpg,png,gif|max:2048',
-            'heading' => 'required|string|max:255',
-            'tag_line_1' => 'required|string|max:500',
-            'tag_line_2' => 'required|string|max:500',
-            'video' => 'nullable|string|max:255',
-            'benifit_title' => 'nullable|string|max:255',
-            'benifit_image' => 'nullable|image|mimes:jpeg,jpg,png,gif|max:2048',
-            'para_1' => 'nullable|string|max:255',
-            'para_2' => 'nullable|string|max:255',
-            'use_title' => 'nullable|string|max:255',
-        
-            'warning_title' => 'nullable|string|max:255',
-            'facility_title' => 'nullable|string|max:255',
+            'title' => 'required|string|max:255',
+            'thumbnail' => 'nullable|image|mimes:jpeg,jpg,png,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,jpg,png,gif|max:2048',
+            'tagline' => 'nullable|string|max:500',
+            'details' => 'nullable|string',
         ]);
 
         try {
+            // Handle thumbnail upload
+            if ($this->thumbnail) {
+                $thumbnail_name = md5($this->thumbnail . microtime()) . '.' . $this->thumbnail->extension();
+                $thumbnail_url = "images/products";
+                $this->thumbnail->storeAs($thumbnail_url, $thumbnail_name);
+                $thumbnail_file_name = $thumbnail_url . '/' . $thumbnail_name;
+            } else {
+                $thumbnail_file_name = null;
+            }
 
-
+            // Handle image upload
             if ($this->image) {
                 $image_name = md5($this->image . microtime()) . '.' . $this->image->extension();
                 $image_url = "images/products";
                 $this->image->storeAs($image_url, $image_name);
-                $file_name = $image_url . '/' . $image_name;
+                $image_file_name = $image_url . '/' . $image_name;
             } else {
-                $file_name = NULL;
+                $image_file_name = null;
             }
 
-            if ($this->benifit_image) {
-                $benifit_image_name = md5($this->benifit_image . microtime()) . '.' . $this->benifit_image->extension();
-                $benifit_image_url = "images/products";
-                $this->benifit_image->storeAs($benifit_image_url, $benifit_image_name);
-                $benifit_image_file_name = $benifit_image_url . '/' . $benifit_image_name;
-            } else {
-                $benifit_image_file_name = NULL;
-            }
-
-
+            // Create the product
             $product = Product::create([
                 'name' => $this->name,
                 'slug' => $this->slug,
-                'image' => $file_name,
-
-                'heading' => $this->heading,
-                'tag_line_1' => $this->tag_line_1,
-                'tag_line_2' => $this->tag_line_2,
-                'video' => $this->video,
-                'benifit_title' => $this->benifit_title,
-                'benifit_image' => $benifit_image_file_name,
-                'para_1' => $this->para_1,
-                'para_2' => $this->para_2,
-                'use_title' => $this->use_title,
-                'use_text' => $this->use_title,
-                'warning_title' => $this->warning_title,
-                'warning_text' => $this->warning_text,
-                'facility_title' => $this->facility_title,
+                'title' => $this->title,
+                'image' => $image_file_name,
+                'thumbnail' => $thumbnail_file_name,
+                'tagline' => $this->tagline,
+                'details' => $this->details,
             ]);
 
+            // Attach selected categories to the product
             $product->categories()->attach($categories);
 
+            // Dispatch a success message
             $this->dispatch('alert', ['type' => 'success',  'message' => $this->page . ' has been added successfully!']);
 
             return $this->redirect(route('admin.product.index'), navigate: true);
         } catch (\Exception $ex) {
-            $this->dispatch('alert', ['type' => 'error',  'message' => 'Something went wrong!']);
+            // Dispatch an error message if something goes wrong
+            $this->dispatch('alert', ['type' => 'error', 'message' => 'Something went wrong!']);
         }
     }
-
-
 
     public function render()
     {

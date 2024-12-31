@@ -17,20 +17,11 @@ class Product extends Model
     protected $fillable = [
         'name',
         'slug',
+        'title',
+        'thumbnail',
         'image',
-        'heading',
-        'tag_line_1',
-        'tag_line_2',
-        'video',
-        'benifit_title',
-        'benifit_image',
-        'para_1',
-        'para_2',
-        'use_title',
-        'use_text',
-        'warning_title',
-        'warning_text',
-        'facility_title'
+        'tagline',
+        'details',
     ];
 
     public function categories()
