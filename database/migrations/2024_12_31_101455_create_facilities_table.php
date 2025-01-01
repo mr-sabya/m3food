@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId(Product::class);
+            $table->foreignIdFor(Product::class);
             $table->string('title');
             $table->timestamps();
         });
