@@ -61,7 +61,7 @@
                                 <hr>
                                 <ol>
                                     @forelse($facility->items as $item)
-                                    <li class="border-bottom pb-3">
+                                    <li class="border-bottom pb-3 pt-3">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <span>
                                                 {{ $item->text }}
@@ -78,10 +78,6 @@
                                     <li>No items added</li>
                                     @endforelse
                                 </ol>
-
-
-
-
                             </div>
                         </div>
                         @endforeach
