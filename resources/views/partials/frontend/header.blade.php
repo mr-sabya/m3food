@@ -2,7 +2,7 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-dark">
             <a class="navbar-brand" href="{{ route('home') }}" wire:navigate>
-                <img class="main-logo" src="{{ url('assets/fontend/img/logo.svg') }}" alt="" loading="lazy">
+                <img class="main-logo" src="{{ url('assets/frontend/img/logo.svg') }}" alt="" loading="lazy">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

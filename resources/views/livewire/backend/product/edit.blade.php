@@ -61,6 +61,26 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-12">
+                                <div class="form-group mb-2">
+                                    <label class="ms-checkbox-wrap ms-checkbox-primary">
+                                        <input type="checkbox" value="1" id="is_new" wire:model="is_new"> <i class="ms-checkbox-check"></i>
+                                    </label>
+                                    <span> <label for="is_new">New</label></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group mb-2">
+                                    <label class="ms-checkbox-wrap ms-checkbox-primary">
+                                        <input type="checkbox" value="1" id="is_trending" wire:model="is_trending"> <i class="ms-checkbox-check"></i>
+                                    </label>
+                                    <span> <label for="is_trending">Trending?</label></span>
+                                </div>
+                            </div>
+
+
+
                         </div>
 
                         <button class="btn btn-secondary d-block" type="submit">Save</button>
@@ -79,15 +99,17 @@
                         <div class="form-row">
 
                             <div class="col-md-12 mb-3">
-                                <label for="category">Category</label>
-                                @foreach($categories as $category)
+                                <label for="category_id">Category</label>
                                 <div class="form-group mb-2">
-                                    <label class="ms-checkbox-wrap ms-checkbox-primary">
-                                        <input type="checkbox" value="{{ $category->id }}" id="category_{{ $category->id }}" wire:model="category.{{ $category->id }}"> <i class="ms-checkbox-check"></i>
-                                    </label>
-                                    <span> <label for="category_{{ $category->id }}">{{ $category->name }} </label></span>
+                                    <select name="category_id" id="category_id" class="form-control" wire:model="category_id">
+                                        <option value="">Select Category</option>
+                                        @foreach($categories as $category)
+                                        <option value="{{ $category->id }}"> {{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('tagline') <div class="invalid-feedback d-block">{{ $message }}</div> @enderror
+
                                 </div>
-                                @endforeach
                             </div>
 
 

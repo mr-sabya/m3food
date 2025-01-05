@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Frontend\Home;
 
+use App\Models\Product;
 use Livewire\Component;
 
 class ProductGrid extends Component
@@ -15,6 +16,8 @@ class ProductGrid extends Component
 
     public function render()
     {
-        return view('livewire.frontend.home.product-grid');
+        return view('livewire.frontend.home.product-grid',[
+            'products' => Product::orderBy('id', 'DESC')->get(),
+        ]);
     }
 }

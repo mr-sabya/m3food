@@ -17,24 +17,25 @@ class Product extends Model
     protected $fillable = [
         'name',
         'slug',
+        'category_id',
         'title',
         'thumbnail',
         'image',
         'tagline',
         'details',
+        'is_trending',
+        'is_new',
     ];
 
-    public function categories()
+    public function category()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
-    public function getCategory($id)
+
+    public function facilities()
     {
-        $category = $this->categories()->where('category_id', $id)->first();
-        if ($category) {
-            return true;
-        }
-        return false;
+        return $this->hasMany(Facility::class, 'product_id');    
     }
+ 
 }

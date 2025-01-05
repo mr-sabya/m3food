@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,11 +16,16 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
+            $table->foreignIdFor(Category::class);
             $table->string('title');
             $table->string('thumbnail');
             $table->string('image');
             $table->string('tagline');
             $table->text('details');
+
+            $table->boolean('is_trending')->default(0);
+            $table->boolean('is_new')->default(0);
+
             $table->timestamps();
         });
     }

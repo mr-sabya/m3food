@@ -12,8 +12,8 @@ class Edit extends Component
 {
     use WithFileUploads;
 
-    public $page = "Product", $product, $product_id, $category = array(), $uploadImage = false, $uploadThumbnail = false, $getCategory;
-    public $name, $slug, $title, $image, $thumbnail, $tagline, $details;
+    public $page = "Product", $product, $product_id, $uploadImage = false, $uploadThumbnail = false, $getCategory;
+    public $name, $slug, $category_id, $title, $image, $thumbnail, $tagline, $details, $is_trending, $is_new;
 
     public function generateSlug()
     {
@@ -44,26 +44,29 @@ class Edit extends Component
         $this->product = $product;
         $this->product_id = $product->id;
 
-        // Populate categories for checkboxes
-        foreach ($product->categories as $cat) {
-            $this->category[$cat->id] = true;
-        }
-
         $this->name = $product->name;
         $this->slug = $product->slug;
+        $this->category_id = $product->category_id;
         $this->title = $product->title;
         $this->tagline = $product->tagline;
         $this->details = $product->details;
+
+        if($product->is_trending == 1){
+            $this->is_trending = true;
+        }
+        if($product->is_new == 1){
+            $this->is_new = true;
+        }
     }
 
     public function update()
     {
-        // Get selected category IDs
-        $categories = array_keys(array_filter($this->category));
+
 
         $validationRules = [
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:products,slug,' . $this->product_id,
+            'category_id' => 'required',
             'title' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,jpg,png,gif|max:2048',
             'thumbnail' => 'nullable|image|mimes:jpeg,jpg,png,gif|max:2048',
@@ -88,18 +91,20 @@ class Edit extends Component
             $product->update([
                 'name' => $this->name,
                 'slug' => $this->slug,
+                'category_id' => $this->category_id,
                 'title' => $this->title,
                 'image' => $file_name,
                 'thumbnail' => $thumbnail_name,
                 'tagline' => $this->tagline,
                 'details' => $this->details,
+                'is_trending' => $this->is_trending ? 1 : 0,
+                'is_new' => $this->is_new ? 1 : 0,
             ]);
 
-            $product->categories()->sync($categories);
 
             $this->dispatch('alert', ['type' => 'success',  'message' => $this->page . ' has been updated successfully!']);
 
-            return $this->redirect(route('admin.product.index'), navigate: true);
+            // return $this->redirect(route('admin.product.index'), navigate: true);
         } catch (\Exception $ex) {
             $this->dispatch('alert', ['type' => 'error', 'message' => 'Something went wrong!']);
         }
