@@ -40,7 +40,7 @@ class Edit extends Component
 
     public function mount($id)
     {
-        $product = Product::with('categories')->find($id);
+        $product = Product::find($id);
         $this->product = $product;
         $this->product_id = $product->id;
 
